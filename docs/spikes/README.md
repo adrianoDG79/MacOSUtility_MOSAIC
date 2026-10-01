@@ -9,7 +9,7 @@
 | S5 | Posta | Thunderbird **GO** su fixture; Apple Mail **GO** (236.041 messaggi, 300/300 campioni ben formati) | [S5-mail.md](S5-mail.md) |
 | S6 | Modelli di embedding | **Rosa ristretta**; candidato predefinito granite-embedding-278m | [S6-embeddings.md](S6-embeddings.md) |
 | S7 | Foundation Models | **GO con revisione del design** | [S7-foundation-models.md](S7-foundation-models.md) |
-| S8 | Firma e permessi dopo le rebuild | Prima registrazione fatta (Team HQJWK6BU8M, Hardened Runtime attivo); manca la rebuild di confronto | — |
+| S8 | Firma e permessi dopo le rebuild | **GO**: Full Disk Access sopravvissuto alla rebuild con firma stabile | [S8-signing-permissions.md](S8-signing-permissions.md) |
 | S9 | Versione minima di macOS | Raccomandazione: **macOS 15** | [S9-deployment-target.md](S9-deployment-target.md) |
 
 ## Sessione interattiva con Mosaic Probe (S2, S4, S5, S8)

@@ -9,7 +9,7 @@ Probabilità (P) e impatto (I): **A** alto · **M** medio · **B** basso.
 
 | ID | Rischio | Area | P | I | Mitigazione | Milestone |
 | --- | --- | --- | --- | --- | --- | --- |
-| R1 | Su questo Mac non ci sono identità di firma: con build ad hoc, permessi TCC e accesso al Portachiavi si perdono a ogni build | Sicurezza, sviluppo | A | A | Certificato Apple Development prima di M0; bundle ID fissato; verifica in S8 | M0 |
+| R1 | Su questo Mac non ci sono identità di firma: con build ad hoc, permessi TCC e accesso al Portachiavi si perdono a ogni build | Sicurezza, sviluppo | B | A | **Ridotto da S8**: certificato Apple Development creato, Full Disk Access verificato sopravvivere a una rebuild con Team ID fisso. Resta da verificare con Developer ID e notarizzazione prima della distribuzione | M0 |
 | R2 | L'archivio di Apple Mail non è documentato e cambia tra versioni (V12 su Sequoia, versione su Tahoe da scoprire) | Mail | M | A | Rilevamento di cartella e schema; test su fixture; ripiego sui soli `.emlx`; Spotlight come ripiego per la ricerca | M5 |
 | R3 | Full Disk Access non concesso, oppure concesso senza riavviare Mosaic | Permessi | M | M | Spiegazione just-in-time, istruzioni, rilevamento e richiesta di riavvio | M5 |
 | R4 | Corpi e allegati non scaricati in locale da Mail (IMAP con download limitato) | Mail | M | M | Mail Diagnostics li conta e suggerisce le impostazioni di Mail; Mosaic non scarica nulla dalla rete | M5 |
