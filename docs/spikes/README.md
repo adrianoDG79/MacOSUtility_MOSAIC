@@ -5,7 +5,7 @@
 | S1 | SQLCipher con GRDB | **GO** | [S1-sqlcipher.md](S1-sqlcipher.md) |
 | S2 | Servizi XPC, permessi, sandbox, file dataless | **GO** per XPC/sandbox; test del file dataless non eseguito | — |
 | S3 | Scansione di massa e FSEvents | **GO** | [S3-crawl-fsevents.md](S3-crawl-fsevents.md) |
-| S4 | Tastiere | **Bloccato**: Monitoraggio dell'input negato, tastiera esterna non rilevata; da rifare | — |
+| S4 | Tastiere | **GO**: 0 errori su 25 pressioni, latenza di switch 38–46 ms | [S4-keyboard.md](S4-keyboard.md) |
 | S5 | Posta | Thunderbird **GO** su fixture; Apple Mail **GO** (236.041 messaggi, 300/300 campioni ben formati) | [S5-mail.md](S5-mail.md) |
 | S6 | Modelli di embedding | **Rosa ristretta**; candidato predefinito granite-embedding-278m | [S6-embeddings.md](S6-embeddings.md) |
 | S7 | Foundation Models | **GO con revisione del design** | [S7-foundation-models.md](S7-foundation-models.md) |
@@ -55,6 +55,14 @@ Mosaic Probe riunisce i quattro spike che richiedono permessi o azioni manuali, 
    - esegui il test del primo tasto (tre giri);
    - "Salva risultati".
 5. **Avvisami.** Ricompilo e reinstallo Mosaic Probe con la stessa firma; tu la riapri e premi di nuovo "Registra questa build". Il confronto dice se i permessi sopravvivono alla rebuild (S8).
+
+### Nuovo rischio emerso il 2026-10-01: input source per documento
+
+In Pages/TextEdit il layout della tastiera segue il **documento** (memoria TSM per campo di testo), non solo il dispositivo collegato: un documento "nato" in U.S. riapre in U.S. indipendentemente dalla tastiera fisica attiva in quel momento. Questo è in potenziale conflitto con lo switch automatico per-dispositivo previsto da ADR-012: TSM potrebbe riapplicare il proprio input source salvato dopo (o al posto di) quello impostato da Mosaic in risposta all'evento HID di arrivo tastiera.
+
+- **Causa confermata e mitigata.** La voce di sistema "Automatically switch to document's input source" (Impostazioni → Tastiera → Sorgenti di input → Modifica…) era attiva; disattivandola il conflitto scompare.
+- Nota di design per M9: valutare se il Keyboard Manager debba disattivare questa opzione in automatico (con consenso dell'utente) quando viene attivato, invece di lasciare il conflitto latente.
+- Registrato come R47 in MOS-RISK-001, ora a probabilità bassa grazie alla mitigazione nota.
 
 ### Stato al 2026-09-29, fine sessione
 

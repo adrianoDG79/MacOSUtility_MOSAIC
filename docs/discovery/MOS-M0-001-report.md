@@ -3,7 +3,7 @@
 | Campo | Valore |
 | --- | --- |
 | Milestone | M0, fondamenta e spike |
-| Stato | **Bozza**: gli spike autonomi sono conclusi; mancano quelli interattivi (S2, S4, S8 e la parte Apple Mail di S5) |
+| Stato | **Bozza**: S4 e la parte Apple Mail di S5 conclusi; mancano il test 3 di S2 (file dataless) e la rebuild di confronto di S8 |
 | Data | 2026-09-29 |
 | Regola | Alla fine di M0 ci si ferma: M1 parte solo dopo la revisione e l'approvazione di questo rapporto |
 
@@ -23,13 +23,13 @@
 | Spike | Esito | Rapporto |
 | --- | --- | --- |
 | S1, SQLCipher con GRDB | **GO** | [S1](../spikes/S1-sqlcipher.md) |
-| S2, XPC, TCC, sandbox, dataless | In attesa (Mosaic Probe) | — |
+| S2, XPC, TCC, sandbox, dataless | **GO** per XPC/sandbox; test del file dataless non eseguito | — |
 | S3, scansione e FSEvents | **GO** | [S3](../spikes/S3-crawl-fsevents.md) |
-| S4, tastiere | In attesa (Mosaic Probe e tastiera esterna) | — |
-| S5, posta | Thunderbird **GO** su fixture; Apple Mail in attesa | [S5](../spikes/S5-mail.md) |
+| S4, tastiere | **GO** | [S4](../spikes/S4-keyboard.md) |
+| S5, posta | Thunderbird **GO** su fixture; Apple Mail **GO** | [S5](../spikes/S5-mail.md) |
 | S6, embedding | **Rosa ristretta**; candidato predefinito granite-embedding-278m | [S6](../spikes/S6-embeddings.md) |
 | S7, Foundation Models | **GO con revisione del design** | [S7](../spikes/S7-foundation-models.md) |
-| S8, firma e permessi dopo le rebuild | In attesa del certificato | — |
+| S8, firma e permessi dopo le rebuild | Prima registrazione fatta (Team HQJWK6BU8M); manca la rebuild di confronto | — |
 | S9, versione minima di macOS | Raccomandazione **macOS 15** | [S9](../spikes/S9-deployment-target.md) |
 
 ## 2. ADR dopo M0 (provvisorio)
@@ -37,9 +37,9 @@
 | ADR | Stato dopo M0 | Motivo |
 | --- | --- | --- |
 | ADR-006, cifratura a riposo | **Accettata** | S1: condizione di D7 soddisfatta |
-| ADR-003, processo residente con servizi XPC | Accettata per il ciclo di vita; topologia XPC in attesa | S2 |
-| ADR-012, Keyboard Manager | In attesa delle misure | S4 |
-| ADR-009, posta dai client locali | Thunderbird confermato su fixture; Apple Mail in attesa | S5 |
+| ADR-003, processo residente con servizi XPC | Accettata per il ciclo di vita e per XPC/sandbox; test del file dataless ancora da fare | S2 |
+| ADR-012, Keyboard Manager | **Accettata**: 0 errori su 25 pressioni, latenza di switch 38–46 ms; nota di design su R47 da portare in M9 | S4 |
+| ADR-009, posta dai client locali | **Accettata**: Thunderbird confermato su fixture, Apple Mail confermato su dati reali (236.041 messaggi) | S5 |
 | ADR-016, versione minima di macOS | Proposta di risoluzione: macOS 15 | S9, da approvare |
 | ADR-005, ricerca, e ADR-015, substrato | Revisione proposta: `SearchIntent` a due stadi e fusione ibrida pesata | S7 e S6 (scostamenti 1 e 5) |
 | ADR-007, vettori | Accettata: 100.000 blocchi a 768 dimensioni in int8 occupano circa 77 MB, la ricerca esatta resta adeguata | S6 |
@@ -66,11 +66,11 @@ Raccomandazione: **macOS 15**, solo Apple Silicon, con rilevamento a runtime del
 ## 5. Fattibilità della posta
 
 - **Thunderbird:** GO su fixture. Profili, mbox, eliminati non compattati, cartelle, Gloda e diagnostica "rilevati rispetto a indicizzati" funzionano (5 test su 5). Manca la validazione su un profilo reale (R43).
-- **Apple Mail:** in attesa della prova con Mosaic Probe.
+- **Apple Mail:** **GO** su dati reali. 236.041 messaggi, 73 mailbox (26 con messaggi), 300/300 campioni ben formati, schema letto con successo (versione V10), Envelope Index da 970 MB in circa 36 s di scansione a freddo.
 
 ## 6. Keyboard Manager
 
-In attesa della prova S4 con Mosaic Probe. Già noto: il cambio automatico per documento è attivo su questo Mac.
+**GO.** Rilevamento HID corretto su due tastiere esterne fisicamente diverse (Logitech, casa e ufficio); switch automatico del layout per dispositivo con latenza mediana 37,9 ms (massima 45,7 ms) e **0 errori su 25 pressioni misurate**. Durante la prova è emerso un conflitto reale con la memoria per-documento di macOS (TSM, opzione "Automatically switch to document's input source", attiva di default): con quell'opzione attiva il layout seguiva il documento invece della tastiera collegata. Disattivandola il conflitto scompare (registrato come R47 in MOS-RISK-001, ora a probabilità bassa). Resta da decidere in M9 se Mosaic debba gestire quell'opzione in automatico, con consenso dell'utente. Dettagli in [S4](../spikes/S4-keyboard.md).
 
 ## 7. Modelli di embedding
 
@@ -100,7 +100,10 @@ In attesa della prova S4 con Mosaic Probe. Già noto: il cambio automatico per d
 | R1, firma | Ancora aperto; si aggiunge il vincolo sulla verifica delle librerie |
 | R42, versione minima | Ridotto da S9 |
 | R17, qualità e licenze degli embedding | Ridotto da S6 per la qualità; resta aperto il runtime Core ML |
+| R6, cambio di layout e conflitto con l'input source per documento | Chiuso da S4: switch per-dispositivo verificato (0 errori su 25 pressioni), conflitto confermato e mitigato (vedi R47) |
+| R8, tastiere identiche senza numero di serie | Confermato da S4: entrambe le tastiere Logitech testate risultano senza serial number; resta un limite dichiarato, non un blocco |
 | Nuovo | Xcode 27 su macOS 26.6.2 segnala plugin CoreDevice e CoreSimulator non allineati: nessun effetto sulle build per macOS |
+| **R47 (nuovo)**, conflitto tra input source per-dispositivo (ADR-012) e memoria per-documento di TSM in Pages/TextEdit | Causa confermata e mitigata (disattivazione dell'opzione di sistema); nota di design per M9 |
 
 ## 10. Raccomandazione su M1
 
