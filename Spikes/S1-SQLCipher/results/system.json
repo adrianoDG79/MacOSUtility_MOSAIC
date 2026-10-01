@@ -1,0 +1,87 @@
+{
+  "chunk_insert_ms" : 5670.6666649999997,
+  "chunk_insert_per_s" : 17634.610868103286,
+  "chunks" : 100000,
+  "database_bytes" : 292761600,
+  "engine" : {
+    "fts5" : true,
+    "load_extension_omitted" : true,
+    "sqlite_version" : "3.51.0"
+  },
+  "file_insert_ms" : 1594.6130849999997,
+  "file_insert_per_s" : 188133.41168588243,
+  "files" : 300000,
+  "mode" : "system",
+  "open_ms" : 4.2236250000000002,
+  "peak_resident_bytes" : 60489728,
+  "queries_per_kind" : 200,
+  "reopen_first_query_ms" : 11.218125000000001,
+  "update_1000_chunks_ms" : 482.48308300000002,
+  "warm_queries" : {
+    "accent_insensitive" : {
+      "max_ms" : 3.3376250000000001,
+      "mean_ms" : 0.71808265500000079,
+      "p50_ms" : 0.66391699999999998,
+      "p95_ms" : 1.232334,
+      "p99_ms" : 1.867917,
+      "queries_with_results" : 200
+    },
+    "and_two_medium" : {
+      "max_ms" : 1.955667,
+      "mean_ms" : 0.6348978949999996,
+      "p50_ms" : 0.58637499999999998,
+      "p95_ms" : 1.1853750000000001,
+      "p99_ms" : 1.9061250000000001,
+      "queries_with_results" : 195
+    },
+    "name_trigram" : {
+      "max_ms" : 1.7918750000000001,
+      "mean_ms" : 0.42831913500000041,
+      "p50_ms" : 0.35870800000000003,
+      "p95_ms" : 1.056125,
+      "p99_ms" : 1.3343750000000001,
+      "queries_with_results" : 200
+    },
+    "phrase_from_text" : {
+      "max_ms" : 123.01475000000001,
+      "mean_ms" : 12.751335020000001,
+      "p50_ms" : 3.8959160000000002,
+      "p95_ms" : 57.968499999999999,
+      "p99_ms" : 102.026584,
+      "queries_with_results" : 200
+    },
+    "prefix_3" : {
+      "max_ms" : 84.347875000000002,
+      "mean_ms" : 28.536240585000009,
+      "p50_ms" : 14.087332999999999,
+      "p95_ms" : 75.760082999999995,
+      "p99_ms" : 83.313999999999993,
+      "queries_with_results" : 200
+    },
+    "single_common" : {
+      "max_ms" : 60.712541999999999,
+      "mean_ms" : 15.485538335000008,
+      "p50_ms" : 12.635667,
+      "p95_ms" : 28.100791000000001,
+      "p99_ms" : 42.361624999999997,
+      "queries_with_results" : 200
+    },
+    "single_medium" : {
+      "max_ms" : 6.210083,
+      "mean_ms" : 1.2329616749999994,
+      "p50_ms" : 1.1149169999999999,
+      "p95_ms" : 1.91275,
+      "p99_ms" : 3.0461670000000001,
+      "queries_with_results" : 200
+    },
+    "single_rare" : {
+      "max_ms" : 2.3999169999999999,
+      "mean_ms" : 0.9626893750000004,
+      "p50_ms" : 0.90670899999999999,
+      "p95_ms" : 1.467875,
+      "p99_ms" : 1.856125,
+      "queries_with_results" : 200
+    }
+  },
+  "words_per_chunk" : 160
+}

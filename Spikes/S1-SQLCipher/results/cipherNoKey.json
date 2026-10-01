@@ -1,0 +1,89 @@
+{
+  "chunk_insert_ms" : 6475.4071669999994,
+  "chunk_insert_per_s" : 15443.044340071845,
+  "chunks" : 100000,
+  "database_bytes" : 292761600,
+  "engine" : {
+    "cipher_memory_security" : 0,
+    "cipher_version" : "4.19.0 community",
+    "fts5" : true,
+    "load_extension_omitted" : false,
+    "sqlite_version" : "3.53.4"
+  },
+  "file_insert_ms" : 1567.819371,
+  "file_insert_per_s" : 191348.57340654708,
+  "files" : 300000,
+  "mode" : "cipherNoKey",
+  "open_ms" : 7.3695000000000004,
+  "peak_resident_bytes" : 34947072,
+  "queries_per_kind" : 200,
+  "reopen_first_query_ms" : 7.889583,
+  "update_1000_chunks_ms" : 523.06816700000002,
+  "warm_queries" : {
+    "accent_insensitive" : {
+      "max_ms" : 1.0393330000000001,
+      "mean_ms" : 0.43983896499999992,
+      "p50_ms" : 0.44033299999999997,
+      "p95_ms" : 0.68804100000000001,
+      "p99_ms" : 0.80391699999999999,
+      "queries_with_results" : 200
+    },
+    "and_two_medium" : {
+      "max_ms" : 1.5500830000000001,
+      "mean_ms" : 0.51035772999999995,
+      "p50_ms" : 0.47816599999999998,
+      "p95_ms" : 1.0084580000000001,
+      "p99_ms" : 1.2709999999999999,
+      "queries_with_results" : 195
+    },
+    "name_trigram" : {
+      "max_ms" : 0.23591699999999999,
+      "mean_ms" : 0.067681875000000016,
+      "p50_ms" : 0.062125,
+      "p95_ms" : 0.107083,
+      "p99_ms" : 0.15091599999999999,
+      "queries_with_results" : 200
+    },
+    "phrase_from_text" : {
+      "max_ms" : 82.185374999999993,
+      "mean_ms" : 9.6214872799999949,
+      "p50_ms" : 2.8975409999999999,
+      "p95_ms" : 45.356667000000002,
+      "p99_ms" : 75.972333000000006,
+      "queries_with_results" : 200
+    },
+    "prefix_3" : {
+      "max_ms" : 37.217959,
+      "mean_ms" : 13.775253110000008,
+      "p50_ms" : 6.0247919999999997,
+      "p95_ms" : 34.075583000000002,
+      "p99_ms" : 36.349333000000001,
+      "queries_with_results" : 200
+    },
+    "single_common" : {
+      "max_ms" : 21.164916000000002,
+      "mean_ms" : 6.7896908349999983,
+      "p50_ms" : 5.5990000000000002,
+      "p95_ms" : 15.352667,
+      "p99_ms" : 17.835374999999999,
+      "queries_with_results" : 200
+    },
+    "single_medium" : {
+      "max_ms" : 2.327334,
+      "mean_ms" : 0.58133771500000009,
+      "p50_ms" : 0.54870799999999997,
+      "p95_ms" : 0.83899999999999997,
+      "p99_ms" : 1.0572919999999999,
+      "queries_with_results" : 200
+    },
+    "single_rare" : {
+      "max_ms" : 1.1608339999999999,
+      "mean_ms" : 0.61335291499999978,
+      "p50_ms" : 0.56616599999999995,
+      "p95_ms" : 0.94299999999999995,
+      "p99_ms" : 1.1298330000000001,
+      "queries_with_results" : 200
+    }
+  },
+  "words_per_chunk" : 160
+}

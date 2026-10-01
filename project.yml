@@ -1,0 +1,63 @@
+# Source of truth for Mosaic.xcodeproj. Regenerate with scripts/bootstrap.sh.
+name: Mosaic
+options:
+  bundleIdPrefix: it.mosaic
+  developmentLanguage: it
+  createIntermediateGroups: true
+  deploymentTarget:
+    macOS: "14.0"
+
+configFiles:
+  Debug: Config/Mosaic.xcconfig
+  Release: Config/Mosaic.xcconfig
+
+packages:
+  MosaicCore:
+    path: Packages/MosaicCore
+  MosaicStorage:
+    path: Packages/MosaicStorage
+  MosaicPlatform:
+    path: Packages/MosaicPlatform
+
+targets:
+  Mosaic:
+    type: application
+    platform: macOS
+    sources:
+      - path: App
+        excludes:
+          - "**/*.entitlements"
+    dependencies:
+      - package: MosaicCore
+      - package: MosaicStorage
+      - package: MosaicPlatform
+    # Not sandboxed (ADR-002); Hardened Runtime comes from the build settings.
+    # XcodeGen writes App/Mosaic.entitlements from `properties`.
+    entitlements:
+      path: App/Mosaic.entitlements
+      properties: {}
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleName: Mosaic
+        CFBundleDisplayName: Mosaic
+        CFBundleShortVersionString: "0.0.1"
+        CFBundleVersion: "1"
+        LSApplicationCategoryType: public.app-category.productivity
+        LSMinimumSystemVersion: $(MACOSX_DEPLOYMENT_TARGET)
+        NSHumanReadableCopyright: "Mosaic — Your Mac. Connected."
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: it.mosaic.app
+        PRODUCT_NAME: Mosaic
+        GENERATE_INFOPLIST_FILE: NO
+
+schemes:
+  Mosaic:
+    build:
+      targets:
+        Mosaic: all
+    run:
+      config: Debug
+    archive:
+      config: Release

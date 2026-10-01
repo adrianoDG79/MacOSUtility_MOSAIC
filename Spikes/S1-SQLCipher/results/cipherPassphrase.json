@@ -1,0 +1,99 @@
+{
+  "chunk_insert_ms" : 278.00912499999998,
+  "chunk_insert_per_s" : 17985.021175114307,
+  "chunks" : 5000,
+  "database_bytes" : 14008320,
+  "engine" : {
+    "cipher_memory_security" : 0,
+    "cipher_page_size" : 4096,
+    "cipher_provider" : "commoncrypto",
+    "cipher_version" : "4.19.0 community",
+    "fts5" : true,
+    "load_extension_omitted" : false,
+    "sqlite_version" : "3.53.4"
+  },
+  "file_insert_ms" : 16.543042,
+  "file_insert_per_s" : 302241.87304849975,
+  "files" : 5000,
+  "mode" : "cipherPassphrase",
+  "open_ms" : 98.472082999999998,
+  "peak_resident_bytes" : 33931264,
+  "queries_per_kind" : 200,
+  "reopen_first_query_ms" : 196.814333,
+  "security_checks" : {
+    "backup_ms" : 173.72900000000001,
+    "backup_plaintext_header" : false,
+    "backup_rows_match" : true,
+    "plaintext_header" : false,
+    "readable_with_wrong_key" : false,
+    "readable_without_key" : false
+  },
+  "update_1000_chunks_ms" : 525.63154199999997,
+  "warm_queries" : {
+    "accent_insensitive" : {
+      "max_ms" : 0.36454199999999998,
+      "mean_ms" : 0.14538564000000004,
+      "p50_ms" : 0.12654199999999999,
+      "p95_ms" : 0.3105,
+      "p99_ms" : 0.35237499999999999,
+      "queries_with_results" : 193
+    },
+    "and_two_medium" : {
+      "max_ms" : 0.24108399999999999,
+      "mean_ms" : 0.076842684999999994,
+      "p50_ms" : 0.069042000000000006,
+      "p95_ms" : 0.140958,
+      "p99_ms" : 0.16600000000000001,
+      "queries_with_results" : 49
+    },
+    "name_trigram" : {
+      "max_ms" : 0.15337500000000001,
+      "mean_ms" : 0.035732710000000001,
+      "p50_ms" : 0.033625000000000002,
+      "p95_ms" : 0.051874999999999998,
+      "p99_ms" : 0.074540999999999996,
+      "queries_with_results" : 200
+    },
+    "phrase_from_text" : {
+      "max_ms" : 4.547917,
+      "mean_ms" : 0.55264793000000012,
+      "p50_ms" : 0.18112500000000001,
+      "p95_ms" : 2.562875,
+      "p99_ms" : 4.4370839999999996,
+      "queries_with_results" : 200
+    },
+    "prefix_3" : {
+      "max_ms" : 2.735042,
+      "mean_ms" : 1.2194558299999989,
+      "p50_ms" : 0.79462500000000003,
+      "p95_ms" : 2.4384589999999999,
+      "p99_ms" : 2.6447500000000002,
+      "queries_with_results" : 200
+    },
+    "single_common" : {
+      "max_ms" : 1.825958,
+      "mean_ms" : 0.74597726500000017,
+      "p50_ms" : 0.64812499999999995,
+      "p95_ms" : 1.3696250000000001,
+      "p99_ms" : 1.5391250000000001,
+      "queries_with_results" : 200
+    },
+    "single_medium" : {
+      "max_ms" : 0.41137499999999999,
+      "mean_ms" : 0.28830417500000005,
+      "p50_ms" : 0.28695799999999999,
+      "p95_ms" : 0.34483399999999997,
+      "p99_ms" : 0.39224999999999999,
+      "queries_with_results" : 200
+    },
+    "single_rare" : {
+      "max_ms" : 0.159667,
+      "mean_ms" : 0.078087290000000018,
+      "p50_ms" : 0.07775,
+      "p95_ms" : 0.112708,
+      "p99_ms" : 0.1215,
+      "queries_with_results" : 179
+    }
+  },
+  "words_per_chunk" : 160
+}

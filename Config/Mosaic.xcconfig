@@ -1,0 +1,18 @@
+// Build settings shared by every configuration.
+
+MACOSX_DEPLOYMENT_TARGET = 14.0
+ARCHS = arm64
+SWIFT_VERSION = 6.0
+SWIFT_STRICT_CONCURRENCY = complete
+ENABLE_HARDENED_RUNTIME = YES
+DEAD_CODE_STRIPPING = YES
+
+// Signing. Ad hoc until an Apple Development certificate exists on this Mac.
+// To sign with your team, create Config/Signing.local.xcconfig (not versioned):
+//   DEVELOPMENT_TEAM = XXXXXXXXXX
+//   CODE_SIGN_IDENTITY = Apple Development
+CODE_SIGN_STYLE = Manual
+CODE_SIGN_IDENTITY = -
+DEVELOPMENT_TEAM =
+
+#include? "Signing.local.xcconfig"

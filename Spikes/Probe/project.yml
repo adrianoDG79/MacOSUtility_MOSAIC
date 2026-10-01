@@ -1,0 +1,92 @@
+# Mosaic Probe: app for the interactive spikes of M0 (S2, S4, S5, S8).
+# Build with Spikes/Probe/build.sh.
+name: MosaicProbe
+options:
+  bundleIdPrefix: it.mosaic.probe
+  developmentLanguage: it
+  deploymentTarget:
+    macOS: "26.0"
+
+configFiles:
+  Debug: ../../Config/Probe.xcconfig
+  Release: ../../Config/Probe.xcconfig
+
+targets:
+  MosaicProbe:
+    type: application
+    platform: macOS
+    sources:
+      - path: App
+        excludes:
+          - "**/*.entitlements"
+      - path: Shared
+    dependencies:
+      - target: ProbeReader
+      - target: ProbeSandboxed
+    entitlements:
+      path: App/MosaicProbe.entitlements
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleName: Mosaic Probe
+        CFBundleDisplayName: Mosaic Probe
+        CFBundleShortVersionString: "0.0.1"
+        CFBundleVersion: "1"
+        LSMinimumSystemVersion: $(MACOSX_DEPLOYMENT_TARGET)
+        NSLocalNetworkUsageDescription: "Mosaic Probe verifica se macOS consente di raggiungere il router della rete locale (spike S8)."
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: it.mosaic.probe
+        PRODUCT_NAME: Mosaic Probe
+        GENERATE_INFOPLIST_FILE: NO
+
+  # Same source, no sandbox: tests whether an embedded XPC service inherits the app's permissions.
+  ProbeReader:
+    type: xpc-service
+    platform: macOS
+    sources:
+      - path: XPC/ProbeService
+      - path: Shared
+    info:
+      path: XPC/ReaderInfo.plist
+      properties:
+        CFBundleDisplayName: ProbeReader
+        XPCService:
+          ServiceType: Application
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: it.mosaic.probe.reader
+        PRODUCT_NAME: ProbeReader
+        GENERATE_INFOPLIST_FILE: NO
+
+  # Same source in App Sandbox, with no network and no file entitlements.
+  ProbeSandboxed:
+    type: xpc-service
+    platform: macOS
+    sources:
+      - path: XPC/ProbeService
+      - path: Shared
+    # XcodeGen writes this file from `properties`: keep the entitlements here.
+    entitlements:
+      path: XPC/Sandboxed.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+    info:
+      path: XPC/SandboxedInfo.plist
+      properties:
+        CFBundleDisplayName: ProbeSandboxed
+        XPCService:
+          ServiceType: Application
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: it.mosaic.probe.sandboxed
+        PRODUCT_NAME: ProbeSandboxed
+        GENERATE_INFOPLIST_FILE: NO
+
+schemes:
+  MosaicProbe:
+    build:
+      targets:
+        MosaicProbe: all
+    run:
+      config: Debug

@@ -1,0 +1,23 @@
+.DS_Store
+
+# Xcode e SwiftPM
+DerivedData/
+build/
+.build/
+.swiftpm/
+xcuserdata/
+*.xcuserstate
+
+# Progetti generati da XcodeGen a partire da project.yml
+Mosaic.xcodeproj/
+Spikes/Probe/MosaicProbe.xcodeproj/
+
+# Firma personale (team e identità), vedi Config/Mosaic.xcconfig
+Config/Signing.local.xcconfig
+
+# Dipendenze preparate dagli script (vedi Vendor/README.md)
+Vendor/GRDB.swift/
+
+# Dati grezzi degli spike: possono contenere percorsi o metadati personali.
+# Nei documenti finiscono solo valori aggregati.
+Spikes/**/.data/

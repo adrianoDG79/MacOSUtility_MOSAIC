@@ -1,0 +1,7 @@
+// Mosaic Probe (interactive spikes of M0). Same signing as Mosaic.
+#include "Mosaic.xcconfig"
+
+// The probe runs only on this Mac; Swift 5 mode keeps the spike code short.
+MACOSX_DEPLOYMENT_TARGET = 26.0
+SWIFT_VERSION = 5.0
+SWIFT_STRICT_CONCURRENCY = minimal

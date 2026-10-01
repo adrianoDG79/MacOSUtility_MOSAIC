@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Mosaic is not sandboxed (ADR-002). Hardened Runtime is enabled through the
+  build settings; no runtime exceptions are requested.
+-->
+<plist version="1.0">
+<dict/>
+</plist>
